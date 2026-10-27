@@ -6,7 +6,7 @@
 
 This is a simple learning project using an Express app, Prometheus, and Grafana with Docker Compose.
 
-## Preview
+### Endpoint 
 ![prev](./assets/prev.png)
 
 ## How it works
