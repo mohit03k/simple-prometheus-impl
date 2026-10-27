@@ -1,0 +1,32 @@
+# to start both node app and promethues in diff container in same network so promethues can access the 3000 port
+version: '3.8'
+
+services:
+  node-app:
+    build: ./  # from the dockerfile
+    ports: 
+      - "3000:3000"
+    networks: 
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./:/etc/prometheus # binding the yml. file in current folder to this container folder so it listens to any changes if we did to config yml file 
+    ports: 
+      - "9090:9090"
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"  # default runs on 3000 so mapping the port to 3001 since we already have an  node app running on 3000
+    networks:
+      - monitoring
+    environment:
+      - GF_SEC_PASS=admin  #default is also admin pass
+      
+
+networks:
+  monitoring:

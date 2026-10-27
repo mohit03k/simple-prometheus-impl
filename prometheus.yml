@@ -1,0 +1,11 @@
+# this is config file for starting prometheus on docker, u can put diff things here like smtp creds, emails alerts etc
+#
+global: 
+  scrape_interval: 15s # How frequently to scrape targets (from the metrics endpoint)
+
+scrape_configs:
+  - job_name: 'nodejs-app'
+    static_configs:
+      # u it defaults knows /metrics endpoint so u dont need to put here. u put here if u changed it somehow
+      - targets: ['node-app:3000']  # using node-app name as container in same network can identify each other with their names (defined in docker
+        # compose file) it will ping the node-app and get their ip and since get the /metrics endpoint:
