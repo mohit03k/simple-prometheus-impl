@@ -6,6 +6,9 @@
 
 This is a simple learning project using an Express app, Prometheus, and Grafana with Docker Compose.
 
+## Preview
+![prev](./assets/prev.png)
+
 ## How it works
 
 - Express exposes request counts and response durations at `/metrics`.
